@@ -6,10 +6,10 @@ function createHaiku(sylObj, structure, textfile) {
 	var finalHaikus = ""
 	var newWords = [];
 	var syllabels = 0;
-	var words = fs.readFileSync(textfile).toString().split("\r\n").join(" ").split(" ");
+	var words = fs.readFileSync(textfile).toString().split("\r\n").join(" ").split(/[\s+(--)]/);
 	words.forEach(function (word) {
-		if (word.match(/\w+/) !== null) {
-			var newWord = word.match(/\w+('s)?/)[0];
+		if (word.match(/\w+(-\w+)?('\w+)?/) !== null) {
+			var newWord = word.match(/\w+(-\w+)?('\w+)?/)[0];
 			newWords.push(newWord);
 		}
 	});
